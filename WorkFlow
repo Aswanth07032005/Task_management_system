@@ -1,0 +1,42 @@
+task_management/
+│
+├── manage.py
+│
+├── task_management/
+│   ├── _init_.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── tasks/
+│   ├── _init_.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── tests.py
+│   └── migrations/
+│       └── _init_.py
+│
+├── templates/
+│   ├── base.html
+│   │
+│   ├── registration/
+│   │   ├── login.html
+│   │   └── register.html
+│   │
+│   └── tasks/
+│       ├── task_list.html
+│       ├── task_detail.html
+│       ├── task_form.html
+│       ├── task_confirm_delete.html
+│       └── task_search.html
+│
+└── static/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── script.js

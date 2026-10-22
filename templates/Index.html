@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskManager - Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f8ff;
+            color: #17345e;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 0;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: bold;
+            color: #1769ff;
+        }
+
+        .navbar-brand:hover {
+            color: #0953d5;
+        }
+
+        .nav-link {
+            color: #17345e;
+            margin: 0 12px;
+        }
+
+        .nav-link:hover {
+            color: #1769ff;
+        }
+
+        .btn-blue {
+            background: #1769ff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid #1769ff;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-blue:hover {
+            background: #0953d5;
+            border-color: #0953d5;
+            color: white;
+        }
+
+        .btn-outline-blue {
+            color: #1769ff;
+            background: white;
+            border: 1px solid #1769ff;
+            padding: 11px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline-blue:hover {
+            background: #1769ff;
+            color: white;
+        }
+
+        .hero {
+            padding: 90px 0;
+            background: linear-gradient(120deg, #edf5ff, #dceaff);
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #1769ff;
+        }
+
+        .hero p {
+            color: #657a99;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #d6e6ff;
+            color: #1769ff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        .preview {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 15px 45px #183b701a;
+        }
+
+        .preview h4 {
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .task i {
+            color: #1769ff;
+            font-size: 20px;
+        }
+
+        .task-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        .pending {
+            background: #edf4ff;
+            color: #1769ff;
+        }
+
+        .done {
+            background: #dceaff;
+            color: #174ea6;
+        }
+
+        .features {
+            padding: 75px 0;
+            background: white;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7486a1;
+            margin: 15px 0 45px;
+        }
+
+        .feature-card {
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            background: #f3f7ff;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            background: #e5efff;
+            color: #1769ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            border-radius: 18px;
+            margin: 0 auto 20px;
+        }
+
+        .feature-card h5 {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #7486a1;
+            line-height: 1.7;
+        }
+
+        .cta {
+            background: #12305b;
+            color: white;
+            padding: 55px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 65px auto;
+        }
+
+        footer {
+            background: #edf4ff;
+            text-align: center;
+            padding: 22px;
+            color: #71839d;
+        }
+
+        .user-welcome {
+            color: #17345e;
+            font-weight: 600;
+            padding: 10px 5px;
+        }
+
+        .logout-form {
+            display: inline-block;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .preview {
+                margin-top: 40px;
+                padding: 20px;
+            }
+
+            .section-heading {
+                font-size: 29px;
+            }
+
+            .navbar-actions {
+                flex-wrap: wrap;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            <i class="fa-solid fa-square-check"></i>
+            TaskManager
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Features</a>
+                </li>
+            </ul>
+
+            <!-- Authentication buttons -->
+            <div class="d-flex gap-2 mt-3 mt-lg-0 navbar-actions">
+
+                {% if user.is_authenticated %}
+
+                    <span class="user-welcome">
+                        <i class="fa-solid fa-circle-user text-primary"></i>
+                        Welcome, {{ user.username }}
+                    </span>
+
+                    <a href="{% url 'task_list' %}" class="btn-blue">
+
+                        My Tasks
+                    </a>
+
+                    <form method="POST" action="{% url 'logoutB' %}"
+                          class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-outline-blue">
+                            <i class="fa-solid fa-right-from-bracket me-1"></i>
+                            Logout
+                        </button>
+                    </form>
+
+                {% else %}
+
+                    <a href="{% url 'loginF' %}" class="btn-outline-blue">
+                        Login
+                    </a>
+
+                    <a href="{% url 'RegisterF' %}" class="btn-blue">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="tag">
+                    <i class="fa-solid fa-star"></i>
+                    Organize. Plan. Achieve.
+                </div>
+
+                <h1>
+                    Manage Your Tasks
+                    <span>Effortlessly.</span>
+                </h1>
+
+                <p>
+                    Organize your daily activities, manage your tasks,
+                    track your progress and achieve your goals with
+                    our simple Task Management System.
+                </p>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'task_list' %}" class="btn-blue me-2">
+                        View My Tasks
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'RegisterF' %}" class="btn-blue me-2">
+                        Get Started
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="{% url 'loginF' %}" class="btn-outline-blue">
+                        Login
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+<!--            <div class="col-lg-6">-->
+
+<!--                <div class="preview">-->
+
+<!--                    <h4>-->
+<!--                        <i class="fa-solid fa-list-check text-primary me-2"></i>-->
+<!--                        My Tasks-->
+<!--                    </h4>-->
+
+<!--                    <div class="task">-->
+<!--                        <i class="fa-regular fa-circle"></i>-->
+<!--                        <div class="task-name">Learn Python</div>-->
+<!--                        <span class="status pending">Pending</span>-->
+<!--                    </div>-->
+
+<!--                    <div class="task">-->
+<!--                        <i class="fa-solid fa-circle-check"></i>-->
+<!--                        <div class="task-name">Build a Website</div>-->
+<!--                        <span class="status done">Completed</span>-->
+<!--                    </div>-->
+
+<!--                    <div class="task">-->
+<!--                        <i class="fa-regular fa-circle"></i>-->
+<!--                        <div class="task-name">Learn Django</div>-->
+<!--                        <span class="status pending">Pending</span>-->
+<!--                    </div>-->
+
+<!--                    <div class="task">-->
+<!--                        <i class="fa-solid fa-circle-check"></i>-->
+<!--                        <div class="task-name">Practice Coding</div>-->
+<!--                        <span class="status done">Completed</span>-->
+<!--                    </div>-->
+
+<!--                    <div class="mt-4 text-center text-secondary">-->
+<!--                        <i class="fa-solid fa-chart-line text-primary me-2"></i>-->
+<!--                        Stay focused and be productive!-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="container">
+
+        <h2 class="section-heading">Why Choose Us?</h2>
+
+        <p class="subtitle">
+            Everything you need to organize your daily work.
+        </p>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h5>Easy to Use</h5>
+                    <p>
+                        Manage your tasks through a simple and clean interface.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h5>Secure</h5>
+                    <p>
+                        Keep your tasks private with secure user authentication.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h5>Responsive</h5>
+                    <p>
+                        Use the system comfortably on mobile and desktop devices.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h5>Stay Productive</h5>
+                    <p>
+                        Track completed tasks and achieve your daily goals.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="container" id="about">
+    <div class="cta">
+
+        <h2 class="fw-bold mb-3">Ready to Get Started?</h2>
+
+        <p class="mb-4">
+            Start organizing your tasks and make every day count.
+        </p>
+
+        {% if user.is_authenticated %}
+
+            <a href=""
+               class="btn btn-light text-primary fw-bold px-4 py-3">
+                Go to My Tasks
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'RegisterF' %}"
+               class="btn btn-light text-primary fw-bold px-4 py-3">
+                Create Your Account
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p class="mb-0">
+        © 2026 TaskManager. All rights reserved.
+        Built with Django.
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

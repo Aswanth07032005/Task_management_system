@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Task Manager</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f1f5fb;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background: #1565d8;
+            padding: 16px 7%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand {
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .header-text {
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Login container */
+        .main-container {
+            min-height: calc(100vh - 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+            min-height: 450px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(21, 101, 216, 0.12);
+        }
+
+        /* Blue left panel */
+        .info-panel {
+            width: 40%;
+            background: #1565d8;
+            color: white;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-panel h2 {
+            font-size: 29px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .info-panel p {
+            color: #e8f1ff;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .illustration {
+            font-size: 75px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        /* White login form */
+        .form-panel {
+            flex: 1;
+            padding: 45px 40px;
+        }
+
+        .form-panel h3 {
+            color: #17365f;
+            font-size: 27px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #7a8ba3;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            color: #304563;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            padding: 12px;
+            border: 1px solid #d4e0f0;
+            border-radius: 7px;
+            background: #fbfdff;
+        }
+
+        .form-control:focus {
+            border-color: #1565d8;
+            box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.12);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            background: #1565d8;
+            color: white;
+            border: 1px solid #1565d8;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-login:hover {
+            background: #0d4eae;
+            color: white;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 6px;
+            background: #e8f1ff;
+            color: #174ea6;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #7a8ba3;
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #1565d8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .navbar-custom {
+                padding: 15px 20px;
+            }
+
+            .login-wrapper {
+                max-width: 420px;
+                flex-direction: column;
+            }
+
+            .info-panel {
+                width: 100%;
+                padding: 25px;
+            }
+
+            .info-panel h2 {
+                font-size: 23px;
+            }
+
+            .illustration {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar-custom d-flex justify-content-between align-items-center">
+        <a href="#" class="brand">Task Manager</a>
+        <span class="header-text">Welcome Back!</span>
+    </nav>
+
+    <!-- Login section -->
+    <main class="main-container">
+
+        <div class="login-wrapper">
+
+            <!-- Left panel -->
+            <div class="info-panel">
+
+                <div>
+                    <h2>Welcome Back!</h2>
+                    <p class="mt-3">
+                        Login to manage your tasks, track your progress,
+                        and stay productive every day.
+                    </p>
+                </div>
+
+                <div class="illustration">📋</div>
+
+                <p class="mb-0">
+                    Plan better. Work smarter. Achieve more.
+                </p>
+
+            </div>
+
+            <!-- Login form -->
+            <div class="form-panel">
+
+                <h3>Login</h3>
+                <p class="subtitle">
+                    Enter your credentials to continue
+                </p>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="form-control"
+                            placeholder="Enter your username"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        LOGIN →
+                    </button>
+
+                </form>
+
+                <div class="register-text">
+                    Don't have an account?
+                    <a href="{% url 'RegisterF' %}">Create Account</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
